@@ -1,6 +1,11 @@
+import logging
+import logging.config
 import os
 import sys
 import xmlrpclib
+
+logging.config.fileConfig('aria2_ctl.logging.conf')
+logger = logging.getLogger('aria2_ctl')
 
 def path_for_uri(uri, base_path):
     uri_split = uri.split('://', 1)
@@ -12,6 +17,7 @@ def path_for_uri(uri, base_path):
     return os.path.join(base_path, *server_path_components)
 
 if __name__ == '__main__':
+    logger.debug('Arguments: ' + '|'.join(sys.argv))
     base_path = 't:\\download'
     if len(sys.argv) == 1:
         exit(1)
