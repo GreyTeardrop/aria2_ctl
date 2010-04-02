@@ -41,10 +41,10 @@ parser.add_option('--referer')
 parser.add_option('--cookie')
 (options, args) = parser.parse_args()
 
-if len(args) > 0:
+if options.input:
+    url_source = open(options.input, 'r')
+elif len(args) > 0:
     url_source = (args[0],)
-elif options.input:
-    url_source = open(option.input, 'r')
 else:
     parser.error('Either -i or url required')
 
