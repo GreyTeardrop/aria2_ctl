@@ -1,10 +1,12 @@
 import logging
 import logging.config
 import os
+import os.path
 import sys
 import xmlrpclib
 
-logging.config.fileConfig('aria2_ctl.logging.conf')
+base_path = os.path.dirname(os.path.realpath(__file__))
+logging.config.fileConfig(os.path.join(base_path, 'aria2_ctl.logging.conf'))
 logger = logging.getLogger('aria2_ctl')
 
 def path_for_uri(uri, base_path):
